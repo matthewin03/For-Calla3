@@ -10,7 +10,7 @@ window.CONFIG = {
   anniversaryDate: new Date('2026-02-15T23:32:00'),
 
   // All media assets live in this folder
-  mediaBase: './drive-download-20260314T222605Z-3-001/',
+  mediaBase: './',
 
   audio: {
     src: 'Daniel%20Caesar%20-%20Always%20(Official%20Audio).mp3',
