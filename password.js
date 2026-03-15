@@ -10,8 +10,8 @@ const Password = (() => {
     if (initialized) return;
     initialized = true;
 
-    const input  = document.getElementById('password-input');
-    const btn    = document.getElementById('password-submit');
+    const input = document.getElementById('password-input');
+    const btn = document.getElementById('password-submit');
     const errMsg = document.getElementById('password-error');
 
     if (!input || !btn || !errMsg) return;
@@ -32,7 +32,6 @@ const Password = (() => {
     if (unlocked) return;
 
     const val = input.value.trim();
-
     if (val === CONFIG.password) {
       unlocked = true;
       _unlock();
@@ -71,16 +70,16 @@ const Password = (() => {
       }
 
       const pw = document.getElementById('section-password');
-      if (pw) {
-        pw.classList.add('fade-out');
+      if (!pw) return;
 
-        setTimeout(() => {
-          pw.classList.add('hidden');
-          if (typeof Intro !== 'undefined' && Intro.show) {
-            Intro.show();
-          }
-        }, 700);
-      }
+      pw.classList.add('fade-out');
+
+      setTimeout(() => {
+        pw.classList.add('hidden');
+        if (typeof Intro !== 'undefined' && Intro.show) {
+          Intro.show();
+        }
+      }, 700);
     }, 1400);
   }
 
@@ -101,14 +100,14 @@ const Password = (() => {
         angle: 60,
         spread: 55,
         origin: { x: 0, y: 0.6 },
-        colors: ['#f9c0cb', '#fff', '#ec407a']
+        colors: ['#f9c0cb', '#fff', '#ec407a'],
       });
       confetti({
         particleCount: 40,
         angle: 120,
         spread: 55,
         origin: { x: 1, y: 0.6 },
-        colors: ['#f9c0cb', '#fff', '#ec407a']
+        colors: ['#f9c0cb', '#fff', '#ec407a'],
       });
     }, 250);
 
@@ -119,7 +118,7 @@ const Password = (() => {
         startVelocity: 12,
         decay: 0.94,
         origin: { x: 0.5, y: 0.4 },
-        colors: ['#fce4ec', '#f9c0cb', '#fff']
+        colors: ['#fce4ec', '#f9c0cb', '#fff'],
       });
     }, 500);
   }
@@ -135,11 +134,11 @@ const Password = (() => {
       const h = document.createElement('span');
       h.textContent = '❤';
       h.className = 'pw-deco-heart';
-      h.style.left = (Math.random() * 100) + '%';
-      h.style.bottom = (-10 + Math.random() * 40) + '%';
-      h.style.animationDuration = (6 + Math.random() * 8) + 's';
-      h.style.animationDelay = (Math.random() * 6) + 's';
-      h.style.fontSize = (1 + Math.random() * 2) + 'rem';
+      h.style.left = Math.random() * 100 + '%';
+      h.style.bottom = -10 + Math.random() * 40 + '%';
+      h.style.animationDuration = 6 + Math.random() * 8 + 's';
+      h.style.animationDelay = Math.random() * 6 + 's';
+      h.style.fontSize = 1 + Math.random() * 2 + 'rem';
       wrap.appendChild(h);
     }
   }
