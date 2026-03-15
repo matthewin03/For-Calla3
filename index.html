@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="For Calla ❤️" />
+  <title>For Calla ❤️</title>
+
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- CSS — load order matters: base tokens first, then animations, then sections -->
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/password.css" />
+  <link rel="stylesheet" href="css/intro.css" />
+  <link rel="stylesheet" href="css/counter.css" />
+  <link rel="stylesheet" href="css/timeline.css" />
+  <link rel="stylesheet" href="css/love-notes.css" />
+  <link rel="stylesheet" href="css/letter.css" />
+  <link rel="stylesheet" href="css/polaroid-final.css" />
+  <link rel="stylesheet" href="css/bts-video.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CURSOR TRAIL LAYER (always on top)
+  ═══════════════════════════════════════════════════════════ -->
+  <div id="cursor-trail-layer" aria-hidden="true"></div>
+  <div id="cursor-dot" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       STICKY MUSIC TOGGLE
+  ═══════════════════════════════════════════════════════════ -->
+  <button id="music-toggle" class="music-btn hidden" type="button" aria-label="Toggle background music">
+    Music too much? Tap me.
+  </button>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 1 — PASSWORD GATE
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="section-password" class="section-fullscreen" aria-label="Password gate">
+    <!-- Decorative floating hearts layer -->
+    <div class="pw-deco-hearts" aria-hidden="true"></div>
+
+    <h1 class="password-title handwritten">For Calla ❤️</h1>
+
+    <img
+      src="./drive-download-20260314T222605Z-3-001/Waddles.png"
+      alt="Waddles"
+      class="waddles-bob"
+      width="220"
+      height="220"
+    />
+
+    <div class="password-form">
+      <input
+        type="password"
+        id="password-input"
+        placeholder="enter our date..."
+        maxlength="8"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        aria-label="Password"
+      />
+      <button id="password-submit" type="button">Open</button>
+    </div>
+
+    <p id="password-error" class="password-error hidden" role="alert">
+      try again 💕
+    </p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SECTION 2 — INTRO VIDEO
+  ═══════════════════════════════════════════════════════════ -->
+<section id="section-intro" class="intro-section hidden" aria-label="Intro video">
+ <div class="intro-video-wrapper">
+  <video
+    id="intro-video"
+    controls
+    playsinline
+    preload="auto"
+    aria-label="Intro video"
+  >
+    <source src="" type="video/mp4" />
+    <source src="" type="video/quicktime" />
+  </video>
+</div>
+
+    <div class="intro-overlay" aria-hidden="true">
+      <p class="intro-overlay-text handwritten">Happy One Month Baby ❤️</p>
+    </div>
+
+    <button id="intro-next-btn" class="intro-next hidden" type="button">
+      See our story ↓
+    </button>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       MAIN CONTENT — sections 3–9
+       Hidden until intro video is dismissed.
+  ═══════════════════════════════════════════════════════════ -->
+  <main id="main-content" class="hidden" aria-label="Our story">
+
+    <!-- ── SECTION 3: RELATIONSHIP COUNTER ── -->
+    <section id="section-counter" aria-label="Relationship counter">
+      <div class="fade-target" data-delay="0">
+        <h2 class="section-header handwritten">Da Real Counter...</h2>
+
+        <div class="counter-display" role="timer" aria-live="polite" aria-label="Time together">
+          <div class="counter-unit">
+            <span id="count-days" aria-label="Days">0</span>
+            <label>days</label>
+          </div>
+          <span class="counter-separator" aria-hidden="true">·</span>
+          <div class="counter-unit">
+            <span id="count-hours" aria-label="Hours">0</span>
+            <label>hours</label>
+          </div>
+          <span class="counter-separator" aria-hidden="true">·</span>
+          <div class="counter-unit">
+            <span id="count-mins" aria-label="Minutes">0</span>
+            <label>minutes</label>
+          </div>
+        </div>
+
+        <p class="counter-subtext handwritten">And counting ❤️</p>
+      </div>
+    </section>
+
+    <!-- ── SECTION 4: US BEFORE DATING ── -->
+    <section
+      id="section-timeline-before"
+      class="timeline-section"
+      aria-label="Us before dating timeline"
+    >
+      <div class="section-panel">
+        <h2 class="section-header handwritten fade-target" data-delay="0">Us Before Dating</h2>
+        <div id="timeline-before-container" class="timeline-container"></div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 5: LITTLE THINGS / LOVE NOTES ── -->
+    <section id="section-love-notes" aria-label="Love notes">
+      <div class="section-panel">
+        <h2 class="section-header handwritten fade-target" data-delay="0">Little things</h2>
+        <div id="love-notes-grid" class="notes-grid"></div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 6: OFFICIALLY TOGETHER ── -->
+    <section
+      id="section-timeline-after"
+      class="timeline-section"
+      style="background: var(--color-white);"
+      aria-label="Officially together timeline"
+    >
+      <div class="section-panel">
+        <h2 class="section-header handwritten fade-target" data-delay="0">Officially Together</h2>
+        <p class="timeline-after-subtitle fade-target" data-delay="100">February 15, 11:32 PM ❤️</p>
+        <div id="timeline-after-container" class="timeline-container"></div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 7: LETTER REVEAL ── -->
+    <section id="section-letter" aria-label="A letter for Calla">
+      <h2 class="section-header handwritten fade-target" data-delay="0">Something special...</h2>
+
+      <div id="fence-scene">
+        <!-- Phase 1: Fence gate (populated by letter.js) -->
+        <div id="fence-gate" role="button" tabindex="0" aria-label="Click to open the fence"></div>
+
+        <!-- Phase 2: Waddles + Envelope (populated by letter.js, hidden initially) -->
+        <div id="waddles-letter" class="hidden" aria-live="polite"></div>
+
+        <!-- Phase 3: Letter (populated by letter.js, hidden initially) -->
+        <div id="letter-content" class="hidden" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ── SECTION 8: FINAL POLAROID ── -->
+    <section id="section-final-polaroid" aria-label="Final photo">
+      <h2 class="section-header handwritten fade-target" data-delay="0">Us ❤️</h2>
+      <div class="polaroid-final-wrap fade-target" data-delay="200">
+        <div class="polaroid polaroid-final">
+          <img
+            id="final-polaroid-img"
+            src=""
+            alt="Us together"
+            loading="lazy"
+          />
+          <p class="polaroid-caption handwritten">It's gonna be a good one.</p>
+        </div>
+      </div>
+      <div class="final-heart-row" aria-hidden="true">♡ &nbsp; ❤ &nbsp; ♡</div>
+    </section>
+
+    <!-- ── SECTION 9: BTS VIDEO ── -->
+    <section id="section-bts" aria-label="BTS video">
+      <h2 class="section-header handwritten fade-target" data-delay="0">Behind the scenes 🎬</h2>
+      <p class="bts-subtitle fade-target" data-delay="100">just for you.</p>
+      <div class="bts-video-frame fade-target" data-delay="200">
+        <video
+          id="bts-video"
+          controls
+          playsinline
+          preload="none"
+          aria-label="Behind the scenes video"
+        >
+          <source src="" type="video/mp4" />
+        </video>
+      </div>
+      <p class="bts-end-note fade-target" data-delay="400">💕</p>
+    </section>
+
+    <!-- ── FOOTER ── -->
+    <footer class="site-footer">
+      <p class="handwritten">made with love, for Calla 💕</p>
+    </footer>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       SCRIPTS
+  ═══════════════════════════════════════════════════════════ -->
+
+  <!-- CDN: canvas-confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <!-- App scripts (order matters — config first, app last) -->
+  <script src="js/config.js"></script>
+  <script src="js/music.js"></script>
+  <script src="js/cursor.js"></script>
+  <script src="js/counter.js"></script>
+  <script src="js/scroll-observer.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/love-notes.js"></script>
+  <script src="js/letter.js"></script>
+  <script src="js/intro.js"></script>
+  <script src="js/password.js"></script>
+  <script src="js/pig.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

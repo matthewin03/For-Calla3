@@ -1,0 +1,204 @@
+/* ============================================================
+   timeline.css — Sections 4 & 6: Timeline layouts
+   ============================================================ */
+
+.timeline-section {
+  background: var(--color-cream);
+  /* padding lives on .section-panel inside */
+}
+
+.timeline-section:nth-child(even) {
+  background: var(--color-baby-pink);
+}
+
+.timeline-container {
+  position: relative;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+/* Center vertical line */
+.timeline-container::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    transparent 0%,
+    var(--color-blush) 8%,
+    var(--color-blush) 92%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+}
+
+/* ---- Timeline Entry ---- */
+.timeline-entry {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.timeline-entry:last-child {
+  margin-bottom: 0;
+}
+
+/* Alternating sides */
+.timeline-entry.left {
+  flex-direction: row-reverse;
+}
+
+.timeline-entry.left .timeline-card {
+  margin-right: 3rem;
+  margin-left: 0;
+  text-align: right;
+}
+
+.timeline-entry.right .timeline-card {
+  margin-left: 3rem;
+  margin-right: 0;
+}
+
+/* ---- Center dot ---- */
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 1.2rem;
+  width: 14px;
+  height: 14px;
+  background: var(--color-rose);
+  border: 3px solid var(--color-white);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 4px rgba(236,64,122,0.2);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* ---- Card ---- */
+.timeline-card {
+  flex: 1;
+  max-width: calc(50% - 3rem);
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1.2rem 1.4rem;
+  box-shadow: 0 2px 18px rgba(180,100,120,0.12), 0 1px 4px rgba(180,100,120,0.08);
+  border: 1px solid rgba(249,192,203,0.35);
+  transition: box-shadow var(--transition-soft), transform var(--transition-soft);
+}
+
+.timeline-card:hover {
+  box-shadow: 0 6px 32px rgba(180,100,120,0.2), 0 2px 8px rgba(180,100,120,0.12);
+  transform: translateY(-2px);
+}
+
+.timeline-date {
+  font-family: var(--font-handwritten);
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 0.8rem;
+  display: block;
+}
+
+/* ---- Polaroid in timeline ---- */
+.timeline-card .polaroid {
+  width: 100%;
+  max-width: 240px;
+  cursor: none;
+}
+
+/* Alternate tilts */
+.timeline-entry.left .polaroid {
+  transform: rotate(1.5deg);
+}
+.timeline-entry.left .polaroid:hover {
+  transform: rotate(0.5deg) scale(1.04) translateY(-4px);
+}
+
+.timeline-entry.right .polaroid {
+  transform: rotate(-2deg);
+}
+.timeline-entry.right .polaroid:hover {
+  transform: rotate(-0.5deg) scale(1.04) translateY(-4px);
+}
+
+.timeline-polaroids {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: flex-start;
+}
+
+.timeline-entry.left .timeline-polaroids {
+  justify-content: flex-end;
+}
+
+/* ---- Video in timeline ---- */
+.timeline-video-wrapper {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  background: #111;
+  max-width: 280px;
+  border: 2px solid rgba(249,192,203,0.4);
+}
+
+.timeline-video-wrapper video {
+  width: 100%;
+  display: block;
+}
+
+/* ---- After section: empty state ---- */
+.timeline-after-subtitle {
+  font-family: var(--font-handwritten);
+  font-size: 1.2rem;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-top: -2rem;
+  margin-bottom: 2rem;
+}
+
+.timeline-empty-hearts {
+  text-align: center;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
+  opacity: 0.35;
+  color: var(--color-deep-pink);
+  padding: 2rem 0;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  .timeline-container::before {
+    left: 20px;
+  }
+
+  .timeline-entry,
+  .timeline-entry.left {
+    flex-direction: row;
+  }
+
+  .timeline-dot {
+    left: 20px;
+  }
+
+  .timeline-entry .timeline-card,
+  .timeline-entry.left .timeline-card {
+    margin-left: 2.8rem;
+    margin-right: 0;
+    text-align: left;
+    max-width: calc(100% - 2.8rem);
+  }
+
+  .timeline-entry.left .timeline-polaroids {
+    justify-content: flex-start;
+  }
+
+  .timeline-card .polaroid {
+    max-width: 100%;
+  }
+}

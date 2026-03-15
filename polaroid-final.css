@@ -1,0 +1,64 @@
+/* ============================================================
+   polaroid-final.css — Section 8: Final polaroid
+   ============================================================ */
+
+#section-final-polaroid {
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-cream) 100%);
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#section-final-polaroid .section-header {
+  margin-bottom: 2.5rem;
+}
+
+.polaroid-final-wrap {
+  animation: polaroidEntrance 0.9s var(--transition-bounce) both;
+}
+
+.polaroid-final {
+  background: var(--color-white);
+  padding: 16px 16px 64px;
+  box-shadow:
+    0 12px 48px rgba(180, 100, 120, 0.3),
+    0 4px 16px rgba(180, 100, 120, 0.15),
+    inset 0 0 0 1px rgba(249,192,203,0.2);
+  border-radius: 2px;
+  display: inline-block;
+  transform: rotate(2deg);
+  max-width: clamp(260px, 60vw, 420px);
+  transition: transform var(--transition-soft), box-shadow var(--transition-soft);
+}
+
+.polaroid-final:hover {
+  transform: rotate(0deg) scale(1.03) translateY(-6px);
+  box-shadow:
+    0 20px 60px rgba(180, 100, 120, 0.38),
+    0 8px 24px rgba(180, 100, 120, 0.2);
+}
+
+.polaroid-final img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+}
+
+.polaroid-final .polaroid-caption {
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  color: var(--color-text);
+  padding-top: 0.8rem;
+  margin-top: 0;
+}
+
+.final-heart-row {
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.5rem;
+  color: var(--color-rose);
+  opacity: 0.6;
+}

@@ -1,0 +1,260 @@
+/* ============================================================
+   base.css — Design tokens, resets, typography
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap');
+
+/* ---------- Tokens ---------- */
+:root {
+  --color-baby-pink:  #fce4ec;
+  --color-blush:      #f9c0cb;
+  --color-blush-dark: #f48fb1;
+  --color-deep-pink:  #e91e8c;
+  --color-rose:       #ec407a;
+  --color-cream:      #fff8f0;
+  --color-white:      #ffffff;
+  --color-text:       #5a3a3a;
+  --color-text-light: #9e7b7b;
+  --color-wood:       #c4843a;
+  --color-wood-dark:  #a0662a;
+
+  --font-handwritten: 'Dancing Script', cursive;
+  --font-body:        'Lato', sans-serif;
+
+  --shadow-soft:    0 4px 24px rgba(249, 192, 203, 0.35);
+  --shadow-polaroid: 0 8px 32px rgba(180, 100, 120, 0.22), 0 2px 8px rgba(180,100,120,0.12);
+  --shadow-card:    0 2px 16px rgba(180, 100, 120, 0.18);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --transition-soft: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-text);
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: none; /* hidden by heart cursor */
+}
+
+/* restore cursor on interactive elements for fallback */
+a, button, input, [role="button"] {
+  cursor: none;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-baby-pink); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-blush-dark);
+  border-radius: 3px;
+}
+
+/* ---------- Utility ---------- */
+.hidden {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+
+/* ---------- Typography ---------- */
+.handwritten {
+  font-family: var(--font-handwritten);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-handwritten);
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+/* ---------- Section shared ---------- */
+.section-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.8s ease;
+}
+
+.section-fullscreen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.section-panel {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.section-header {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-header::after {
+  content: '';
+  display: block;
+  width: 72px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-rose), var(--color-blush), transparent);
+  border-radius: 2px;
+  margin: 0.7rem auto 0;
+}
+
+/* ---------- Polaroid shared ---------- */
+.polaroid {
+  background: var(--color-white);
+  padding: 12px 12px 48px;
+  box-shadow: var(--shadow-polaroid);
+  border-radius: 2px;
+  display: inline-block;
+  transition: transform var(--transition-soft), box-shadow var(--transition-soft);
+}
+
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.polaroid-caption {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--color-text-light);
+  margin-top: 8px;
+  padding-top: 4px;
+  font-family: var(--font-handwritten);
+}
+
+.polaroid:hover {
+  transform: rotate(-1deg) scale(1.04) translateY(-4px);
+  box-shadow: 0 16px 48px rgba(180, 100, 120, 0.32), 0 4px 12px rgba(180,100,120,0.18);
+}
+
+/* ---------- Fade target for scroll observer ---------- */
+.fade-target {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.fade-target.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Main content wrapper ---------- */
+#main-content {
+  background: var(--color-cream);
+  min-height: 100vh;
+}
+
+/* ---------- Music toggle ---------- */
+.music-btn {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 9000;
+  background: var(--color-white);
+  border: 2px solid var(--color-blush);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow-card);
+  cursor: none;
+  transition: background var(--transition-soft), transform var(--transition-soft);
+  max-width: 180px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.music-btn:hover {
+  background: var(--color-baby-pink);
+  transform: scale(1.05);
+}
+
+/* ---------- Cursor trail layer ---------- */
+#cursor-trail-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+}
+
+/* ---------- Running pig ---------- */
+#running-pig {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 68px;
+  pointer-events: none;
+  z-index: 9997;
+  will-change: transform, left, top;
+}
+
+#running-pig img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 3px 8px rgba(180, 100, 120, 0.25));
+}
+
+/* ---------- Mud footprint ---------- */
+.mud-footprint {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9996;
+  animation: footprintFade 2.2s ease-out forwards;
+  font-size: 11px;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ---------- Custom cursor dot ---------- */
+#cursor-dot {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--color-rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s, height 0.15s;
+  mix-blend-mode: multiply;
+}

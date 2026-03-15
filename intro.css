@@ -1,0 +1,95 @@
+/* ============================================================
+   intro.css — Section 2: Intro video
+   ============================================================ */
+
+.intro-section {
+  padding: 5rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  z-index: 1;
+}
+
+.intro-overlay {
+  position: static;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  animation: fadeIn 1s ease both;
+  opacity: 1;
+  margin-bottom: 1.5rem;
+}
+
+.intro-overlay-text {
+  font-family: var(--font-handwritten);
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  color: var(--color-text);
+  text-align: center;
+  text-shadow: none;
+  letter-spacing: 0.01em;
+}
+
+.intro-video-wrapper {
+  width: min(900px, 92vw);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+  background: #000;
+  margin: 0 auto;
+}
+
+#intro-video {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 75vh;
+  object-fit: contain;
+  background: #000;
+}
+
+.intro-next {
+  position: static;
+  transform: none;
+  margin-top: 1.5rem;
+  padding: 0.8rem 2.2rem;
+  font-family: var(--font-handwritten);
+  font-size: 1.4rem;
+  background: rgba(255,255,255,0.85);
+  color: var(--color-text);
+  border: 2px solid rgba(0,0,0,0.08);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background var(--transition-soft), transform var(--transition-soft);
+  animation: fadeInUp 0.7s ease both;
+  white-space: nowrap;
+}
+
+.intro-next:hover {
+  background: rgba(255,255,255,1);
+  transform: scale(1.05);
+}
+
+.intro-fallback {
+  position: static;
+  width: min(900px, 92vw);
+  min-height: 320px;
+  border-radius: 28px;
+  background: var(--color-baby-pink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.intro-fallback-text {
+  font-family: var(--font-handwritten);
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: var(--color-text);
+  text-align: center;
+  padding: 2rem;
+}

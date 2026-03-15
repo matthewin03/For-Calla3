@@ -1,0 +1,82 @@
+/* ============================================================
+   counter.css — Section 3: Relationship counter
+   ============================================================ */
+
+#section-counter {
+  background: linear-gradient(150deg, var(--color-white) 0%, var(--color-cream) 50%, #fce8ef 100%);
+  text-align: center;
+  padding: 6rem 2rem;
+  border-bottom: 1px solid rgba(249,192,203,0.35);
+}
+
+#section-counter .section-header {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: 2.5rem;
+}
+
+.counter-display {
+  display: flex;
+  gap: clamp(1.5rem, 6vw, 4rem);
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  background: rgba(255,255,255,0.65);
+  border: 1px solid rgba(249,192,203,0.5);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem clamp(1.5rem, 6vw, 4rem);
+  box-shadow:
+    0 4px 32px rgba(249,192,203,0.3),
+    inset 0 0 0 1px rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: inline-flex;
+}
+
+.counter-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.counter-unit span {
+  font-family: var(--font-handwritten);
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  font-weight: 700;
+  color: var(--color-rose);
+  line-height: 1;
+  min-width: 2.5ch;
+  display: inline-block;
+  text-align: center;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.counter-unit label {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  font-weight: 300;
+}
+
+.counter-subtext {
+  font-family: var(--font-handwritten);
+  font-size: 1.4rem;
+  color: var(--color-text-light);
+  animation: fadeIn 0.5s ease both;
+}
+
+.counter-separator {
+  font-family: var(--font-handwritten);
+  font-size: clamp(2rem, 6vw, 4rem);
+  color: var(--color-blush-dark);
+  line-height: 1;
+  padding-bottom: 0.4rem;
+}
+
+/* Pop animation when digit changes */
+.counter-unit span.pop {
+  animation: digitPop 0.35s ease;
+}

@@ -1,0 +1,149 @@
+/* ============================================================
+   animations.css — All @keyframes definitions
+   ============================================================ */
+
+/* ---------- Mud footprint fade-out ---------- */
+@keyframes footprintFade {
+  0%   { opacity: 0.55; transform: scale(1); }
+  60%  { opacity: 0.35; }
+  100% { opacity: 0;    transform: scale(0.85); }
+}
+
+/* ---------- Waddles bobbing ---------- */
+@keyframes bob {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-14px); }
+}
+
+/* ---------- Floating heart cursor trail ---------- */
+@keyframes heartFloat {
+  0%   { opacity: 0.9; transform: translateY(0) scale(1); }
+  60%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-60px) scale(0.4); }
+}
+
+/* ---------- Spawn hearts on unlock ---------- */
+@keyframes heartSpawn {
+  0%   { opacity: 0; transform: translateY(0) scale(0.3); }
+  20%  { opacity: 1; transform: translateY(-20px) scale(1.2); }
+  100% { opacity: 0; transform: translateY(-120px) scale(0.6); }
+}
+
+/* ---------- Section fade-in ---------- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ---------- Password shake error ---------- */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-10px); }
+  40%       { transform: translateX(10px); }
+  60%       { transform: translateX(-8px); }
+  80%       { transform: translateX(8px); }
+}
+
+/* ---------- Counter digit pop ---------- */
+@keyframes digitPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- Note card entrance ---------- */
+@keyframes noteReveal {
+  from { opacity: 0; transform: rotate(-3deg) scale(0.85); }
+  to   { opacity: 1; transform: rotate(-1deg) scale(1); }
+}
+
+/* ---------- Icon pulse ---------- */
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.18); }
+}
+
+/* ---------- Icon opening ---------- */
+@keyframes iconOpen {
+  0%   { transform: scale(1) rotate(0deg); }
+  50%  { transform: scale(1.25) rotate(8deg); }
+  100% { transform: scale(0) rotate(15deg); opacity: 0; }
+}
+
+/* ---------- Waddles bounce in ---------- */
+@keyframes bounceIn {
+  0%   { opacity: 0; transform: translateY(60px) scale(0.7); }
+  60%  { opacity: 1; transform: translateY(-12px) scale(1.05); }
+  80%  { transform: translateY(4px) scale(0.97); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* ---------- Envelope flap ---------- */
+@keyframes flapOpen {
+  from { transform: rotateX(0deg); }
+  to   { transform: rotateX(-180deg); }
+}
+
+/* ---------- Heart seal fade ---------- */
+@keyframes sealFade {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.4); }
+}
+
+/* ---------- Letter panel unfold ---------- */
+@keyframes unfoldTop {
+  from { transform: rotateX(-180deg); }
+  to   { transform: rotateX(0deg); }
+}
+
+@keyframes unfoldBottom {
+  from { transform: rotateX(180deg); }
+  to   { transform: rotateX(0deg); }
+}
+
+/* ---------- Letter paragraph stagger ---------- */
+@keyframes letterTextIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Final polaroid entrance ---------- */
+@keyframes polaroidEntrance {
+  from { opacity: 0; transform: translateY(48px) rotate(4deg); }
+  to   { opacity: 1; transform: translateY(0) rotate(2deg); }
+}
+
+/* ---------- Fence sign wiggle ---------- */
+@keyframes signWiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
+
+/* ---------- Subtle shimmer on counter numbers ---------- */
+@keyframes shimmer {
+  0%   { text-shadow: 0 0 0px var(--color-rose); }
+  50%  { text-shadow: 0 0 18px rgba(233,30,140,0.4); }
+  100% { text-shadow: 0 0 0px var(--color-rose); }
+}
+
+/* ---------- Confetti heart ---------- */
+@keyframes floatUp {
+  0%   { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: translateY(-200px) scale(0.5) rotate(30deg); }
+}
+
+/* ---------- Section panel first reveal ---------- */
+@keyframes sectionReveal {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
