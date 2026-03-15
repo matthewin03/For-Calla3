@@ -1,21 +1,17 @@
-/**
- * timeline.js — Renders both timeline sections from config.
- * Each entry alternates left/right on desktop.
- */
 const Timeline = (() => {
-
   function renderBefore() {
     const container = document.getElementById('timeline-before-container');
     if (!container) return;
+    container.innerHTML = '';
     _render(container, CONFIG.timelineBefore);
   }
 
   function renderAfter() {
     const container = document.getElementById('timeline-after-container');
     if (!container) return;
+    container.innerHTML = '';
 
     if (!CONFIG.timelineAfter || CONFIG.timelineAfter.length === 0) {
-      // Empty state — show placeholder
       const placeholder = document.createElement('div');
       placeholder.className = 'timeline-empty-hearts fade-target';
       placeholder.setAttribute('data-delay', '0');
@@ -36,22 +32,18 @@ const Timeline = (() => {
       el.className = `timeline-entry ${side} fade-target`;
       el.setAttribute('data-delay', delay);
 
-      // Dot
       const dot = document.createElement('div');
       dot.className = 'timeline-dot';
       el.appendChild(dot);
 
-      // Card
       const card = document.createElement('div');
       card.className = 'timeline-card';
 
-      // Date label
       const dateEl = document.createElement('span');
       dateEl.className = 'timeline-date';
       dateEl.textContent = entry.date;
       card.appendChild(dateEl);
 
-      // Media
       const mediasEl = _buildMedia(entry.media, side);
       card.appendChild(mediasEl);
 
@@ -62,7 +54,6 @@ const Timeline = (() => {
 
   function _buildMedia(mediaItems, side) {
     const wrap = document.createElement('div');
-
     const images = mediaItems.filter(m => m.type === 'image');
     const videos = mediaItems.filter(m => m.type === 'video');
 
@@ -91,8 +82,8 @@ const Timeline = (() => {
     pol.className = 'polaroid';
 
     const img = document.createElement('img');
-    img.src     = CONFIG.mediaBase + item.src;
-    img.alt     = item.alt || '';
+    img.src = CONFIG.mediaBase + item.src;
+    img.alt = item.alt || '';
     img.loading = 'lazy';
     img.decoding = 'async';
 
@@ -105,15 +96,15 @@ const Timeline = (() => {
     wrapper.className = 'timeline-video-wrapper';
 
     const video = document.createElement('video');
-    video.controls  = true;
+    video.controls = true;
     video.playsInline = true;
-    video.muted     = false;
-    video.preload   = 'none';
+    video.muted = false;
+    video.preload = 'none';
     video.setAttribute('playsinline', '');
 
     const source = document.createElement('source');
-    source.src  = CONFIG.mediaBase + item.src;
-    // Determine type
+    source.src = CONFIG.mediaBase + item.src;
+
     const ext = item.src.split('.').pop().toLowerCase();
     source.type = ext === 'mp4' ? 'video/mp4' : 'video/quicktime';
 
