@@ -1,42 +1,136 @@
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.__CALLA_APP_INITIALIZED__) return;
-  window.__CALLA_APP_INITIALIZED__ = true;
+/**
+ * password.js — Password gate controller
+ * Handles unlock sequence: validate → confetti → hearts → music → intro
+ */
+const Password = (() => {
+  let unlocked = false;
 
-  // Bind the password gate first so the page is usable
-  Password.init();
+  function init() {
+    const input = document.getElementById('password-input');
+    const btn = document.getElementById('password-submit');
+    const errMsg = document.getElementById('password-error');
 
-  const finalImg = document.getElementById('final-polaroid-img');
-  if (finalImg) {
-    finalImg.src = CONFIG.mediaBase + CONFIG.finalPolaroid.imageSrc;
+    if (!input || !btn || !errMsg) {
+      console.error('Password UI elements not found.');
+      return;
+    }
+
+    btn.addEventListener('click', () => attempt(input, errMsg));
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        attempt(input, errMsg);
+      }
+    });
+
+    _spawnDecoHearts();
   }
 
-  const btsVideo = document.getElementById('bts-video');
-  const btsSource = btsVideo ? btsVideo.querySelector('source') : null;
-  if (btsSource) {
-    btsSource.src = CONFIG.mediaBase + CONFIG.bts.src;
-    btsVideo.load();
+  function attempt(input, errMsg) {
+    if (unlocked) return;
+
+    const val = input.value.trim();
+
+    if (val === CONFIG.password) {
+      unlocked = true;
+      _unlock();
+    } else {
+      _shake(input, errMsg);
+    }
   }
 
-  const introOverlayText = document.querySelector('.intro-overlay-text');
-  if (introOverlayText) introOverlayText.textContent = CONFIG.intro.overlayText;
+  function _shake(input, errMsg) {
+    input.classList.remove('shake');
+    void input.offsetWidth;
+    input.classList.add('shake');
+    input.value = '';
+    errMsg.classList.remove('hidden');
 
-  const introNextBtn = document.getElementById('intro-next-btn');
-  if (introNextBtn) introNextBtn.textContent = CONFIG.intro.buttonText;
-
-  Music.init();
-  Cursor.init();
-  PigRunner.init();
-
-  Timeline.renderBefore();
-  Timeline.renderAfter();
-  LoveNotes.render();
-  Letter.render();
-
-  const musicToggle = document.getElementById('music-toggle');
-  if (musicToggle && !musicToggle.dataset.bound) {
-    musicToggle.addEventListener('click', Music.toggle);
-    musicToggle.dataset.bound = 'true';
+    setTimeout(() => {
+      input.classList.remove('shake');
+      errMsg.classList.add('hidden');
+    }, 1500);
   }
 
-  Letter.init();
-});
+  function _unlock() {
+    _fireConfetti();
+    Cursor.spawnHearts(14);
+    Music.start();
+
+    setTimeout(() => {
+      PigRunner.stop();
+
+      const pw = document.getElementById('section-password');
+      if (!pw) return;
+
+      pw.classList.add('fade-out');
+
+      setTimeout(() => {
+        pw.classList.add('hidden');
+        Intro.show();
+      }, 700);
+    }, 1400);
+  }
+
+  function _fireConfetti() {
+    if (typeof confetti === 'undefined') return;
+
+    confetti({
+      particleCount: 120,
+      spread: 80,
+      origin: { x: 0.5, y: 0.55 },
+      colors: ['#f9c0cb', '#ffffff', '#ec407a', '#fce4ec', '#f48fb1', '#e91e8c'],
+      scalar: 1.1,
+    });
+
+    setTimeout(() => {
+      confetti({
+        particleCount: 40,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0, y: 0.6 },
+        colors: ['#f9c0cb', '#fff', '#ec407a'],
+      });
+
+      confetti({
+        particleCount: 40,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1, y: 0.6 },
+        colors: ['#f9c0cb', '#fff', '#ec407a'],
+      });
+    }, 250);
+
+    setTimeout(() => {
+      confetti({
+        particleCount: 60,
+        spread: 100,
+        startVelocity: 12,
+        decay: 0.94,
+        origin: { x: 0.5, y: 0.4 },
+        colors: ['#fce4ec', '#f9c0cb', '#fff'],
+      });
+    }, 500);
+  }
+
+  function _spawnDecoHearts() {
+    const wrap = document.querySelector('.pw-deco-hearts');
+    if (!wrap) return;
+
+    const count = 8;
+
+    for (let i = 0; i < count; i++) {
+      const h = document.createElement('span');
+      h.textContent = '❤';
+      h.className = 'pw-deco-heart';
+      h.style.left = Math.random() * 100 + '%';
+      h.style.bottom = (-10 + Math.random() * 40) + '%';
+      h.style.animationDuration = (6 + Math.random() * 8) + 's';
+      h.style.animationDelay = Math.random() * 6 + 's';
+      h.style.fontSize = (1 + Math.random() * 2) + 'rem';
+      wrap.appendChild(h);
+    }
+  }
+
+  return { init };
+})();
