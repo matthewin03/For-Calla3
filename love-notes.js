@@ -36,8 +36,15 @@ const LoveNotes = (() => {
   };
 
   function render() {
-    const grid = document.getElementById('love-notes-grid');
-    if (!grid) return;
+  const grid = document.getElementById('love-notes-grid');
+  if (!grid) return;
+
+  grid.innerHTML = '';
+
+  CONFIG.loveNotes.forEach((note, idx) => {
+    // rest of your existing code...
+  });
+}
 
     CONFIG.loveNotes.forEach((note, idx) => {
       const wrap = document.createElement('div');
