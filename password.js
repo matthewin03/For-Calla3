@@ -4,27 +4,26 @@
  */
 const Password = (() => {
   let unlocked = false;
-  let initialized = false;
 
   function init() {
-    if (initialized) return;
-    initialized = true;
-
     const input = document.getElementById('password-input');
     const btn = document.getElementById('password-submit');
     const errMsg = document.getElementById('password-error');
 
-    if (!input || !btn || !errMsg) return;
+    if (!input || !btn || !errMsg) {
+      console.error('Password UI elements not found.');
+      return;
+    }
 
     btn.addEventListener('click', () => attempt(input, errMsg));
 
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
-        e.preventDefault();
         attempt(input, errMsg);
       }
     });
 
+    // Spawn subtle background deco hearts
     _spawnDecoHearts();
   }
 
@@ -32,6 +31,7 @@ const Password = (() => {
     if (unlocked) return;
 
     const val = input.value.trim();
+
     if (val === CONFIG.password) {
       unlocked = true;
       _unlock();
@@ -42,7 +42,7 @@ const Password = (() => {
 
   function _shake(input, errMsg) {
     input.classList.remove('shake');
-    void input.offsetWidth;
+    void input.offsetWidth; // reflow
     input.classList.add('shake');
     input.value = '';
     errMsg.classList.remove('hidden');
@@ -54,20 +54,18 @@ const Password = (() => {
   }
 
   function _unlock() {
+    // 1. Fire confetti
     _fireConfetti();
 
-    if (typeof Cursor !== 'undefined' && Cursor.spawnHearts) {
-      Cursor.spawnHearts(14);
-    }
+    // 2. Spawn floating hearts
+    Cursor.spawnHearts(14);
 
-    if (typeof Music !== 'undefined' && Music.start) {
-      Music.start();
-    }
+    // 3. Start background music
+    Music.start();
 
+    // 4. After brief celebration, hide password section and transition to intro
     setTimeout(() => {
-      if (typeof PigRunner !== 'undefined' && PigRunner.stop) {
-        PigRunner.stop();
-      }
+      PigRunner.stop();
 
       const pw = document.getElementById('section-password');
       if (!pw) return;
@@ -76,9 +74,7 @@ const Password = (() => {
 
       setTimeout(() => {
         pw.classList.add('hidden');
-        if (typeof Intro !== 'undefined' && Intro.show) {
-          Intro.show();
-        }
+        Intro.show();
       }, 700);
     }, 1400);
   }
@@ -102,6 +98,7 @@ const Password = (() => {
         origin: { x: 0, y: 0.6 },
         colors: ['#f9c0cb', '#fff', '#ec407a'],
       });
+
       confetti({
         particleCount: 40,
         angle: 120,
@@ -125,20 +122,19 @@ const Password = (() => {
 
   function _spawnDecoHearts() {
     const wrap = document.querySelector('.pw-deco-hearts');
-    if (!wrap || wrap.dataset.built === 'true') return;
-
-    wrap.dataset.built = 'true';
+    if (!wrap) return;
 
     const count = 8;
+
     for (let i = 0; i < count; i++) {
       const h = document.createElement('span');
       h.textContent = '❤';
       h.className = 'pw-deco-heart';
       h.style.left = Math.random() * 100 + '%';
-      h.style.bottom = -10 + Math.random() * 40 + '%';
-      h.style.animationDuration = 6 + Math.random() * 8 + 's';
+      h.style.bottom = (-10 + Math.random() * 40) + '%';
+      h.style.animationDuration = (6 + Math.random() * 8) + 's';
       h.style.animationDelay = Math.random() * 6 + 's';
-      h.style.fontSize = 1 + Math.random() * 2 + 'rem';
+      h.style.fontSize = (1 + Math.random() * 2) + 'rem';
       wrap.appendChild(h);
     }
   }
