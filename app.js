@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.__CALLA_APP_INITIALIZED__) return;
   window.__CALLA_APP_INITIALIZED__ = true;
 
+  Password.init();
+
   const finalImg = document.getElementById('final-polaroid-img');
   if (finalImg) {
     finalImg.src = CONFIG.mediaBase + CONFIG.finalPolaroid.imageSrc;
@@ -35,6 +37,5 @@ document.addEventListener('DOMContentLoaded', () => {
     musicToggle.dataset.bound = 'true';
   }
 
-  Password.init();
   Letter.init();
 });
